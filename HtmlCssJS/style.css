@@ -1,0 +1,55 @@
+body {
+    background-color: bisque;
+    margin: 0;
+    padding: 0;
+
+}
+.header {
+    background-color: aqua;
+}
+.nav {
+    height: 8vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu{
+    width: 90vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+}
+.menu {
+    text-decoration: none;
+    color: chocolate;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3rem;
+    }
+
+    .menuHamb {
+        display: none;
+        height: 100%;
+        width: 80px;
+    }
+
+    /* Media query */
+
+    @media screen and (max-width: 700px) {
+        .menu {
+            display: none;
+
+        }
+
+        .menuHamb{
+            display: flex;
+            width: 30%;
+        }
+
+        .nav {
+            justify-content: end;
+
+        }
+        
+    }
