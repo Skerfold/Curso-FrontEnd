@@ -1,1 +1,1 @@
-## Curso FrontEnd - Prof Diogo 
+## Curso FrontEnd - Professor Diogo 
