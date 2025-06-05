@@ -1,0 +1,160 @@
+/* curriculos.component.scss */
+
+/* Container styling */
+.curriculos-container {
+    padding: 2rem;
+    background: #f8f9fa;
+    min-height: 100vh;
+}
+
+/* Header styling */
+.curriculos-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+
+    h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin: 0;
+    }
+
+    .add-btn {
+        background: #007bff;
+        color: #fff;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+
+        &:hover {
+            background: #0056b3;
+        }
+    }
+}
+
+/* Table styling */
+.curriculos-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.05);
+
+    th, td {
+        padding: 1rem;
+        text-align: left;
+    }
+
+    th {
+        background: #f1f3f6;
+        font-weight: 600;
+        color: #34495e;
+        border-bottom: 2px solid #e1e4e8;
+    }
+
+    tr {
+        border-bottom: 1px solid #e1e4e8;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    td {
+        color: #555;
+        vertical-align: middle;
+    }
+
+    .actions {
+        display: flex;
+        gap: 0.5rem;
+
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #007bff;
+            font-size: 1.1rem;
+            padding: 0.25rem 0.5rem;
+
+            &:hover {
+                color: #0056b3;
+            }
+        }
+    }
+}
+
+/* Page layout */
+.curriculos-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.lista-curriculos {
+  flex: 1 0 auto;
+}
+
+.novo-curriculo-btn {
+  align-self: flex-end;
+  margin: 2rem 2rem 2rem 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .curriculos-container {
+        padding: 1rem 0.2rem;
+    }
+    .curriculos-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .curriculos-table th, .curriculos-table td {
+        padding: 0.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .curriculos-table, .curriculos-table thead, .curriculos-table tbody, .curriculos-table th, .curriculos-table td, .curriculos-table tr {
+        display: block;
+        width: 100%;
+    }
+    .curriculos-table th {
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+    }
+    .curriculos-table tr {
+        margin-bottom: 1rem;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(44, 62, 80, 0.05);
+        padding: 0.5rem;
+    }
+    .curriculos-table td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        min-height: 2.5rem;
+        font-size: 1rem;
+        text-align: left;
+    }
+    .curriculos-table td:before {
+        position: absolute;
+        top: 0;
+        left: 1rem;
+        width: 45%;
+        white-space: nowrap;
+        font-weight: bold;
+        color: #34495e;
+        content: attr(data-label);
+    }
+}

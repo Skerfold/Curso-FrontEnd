@@ -1,0 +1,52 @@
+<h2>Cadastrar</h2>
+<form action="">
+  <label>CPF</label>
+  <input type="text" name="cpf" [(ngModel)]="curriculo.cpf"> <br>
+
+  <label>Nome</label>
+  <input type="text" name="nome" [(ngModel)]="curriculo.nome"> <br>
+
+  <label>Foto</label>
+  <input type="text" name="foto" [(ngModel)]="curriculo.foto"> <br>
+
+  <label>Descrição</label>
+  <input type="text" name="descricao" [(ngModel)]="curriculo.descricao"> <br>
+
+  <label>Experiência</label>
+  <input type="text" name="salario" [(ngModel)]="curriculo.experiencia"> <br>
+
+  <label>Formação</label>
+  <input type="text" name="salario" [(ngModel)]="curriculo.formacao"> <br>
+
+  <button type="button" (click)="cadastrar()">Cadastrar curriculo</button>
+  <button type="button" (click)="atualizar(curriculo.cpf)">Atualizar curriculo</button>
+  <button type="button" (click)="excluir(curriculo.cpf)">Excluir curriculo</button>
+
+</form>
+
+<!-- tabela com as vagas já cadastradas -->
+ <section class="listar-vagas">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Código da curriculo</th>
+        <th>curriculo</th>
+        <th>Descrição da curriculo </th>
+        <th>Salário</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr class="curriculo-row" *ngFor="let curriculos of curriculos">
+            <td>{{curriculo.cpf}}</td>
+            <td>{{curriculo.nome}}</td>
+            <td>{{curriculo.descricao}}</td>
+            <td>R$ {{curriculo.experiencia}},00</td>
+            <td>R$ {{curriculo.formacao}},00</td>
+            <td>
+                <button class="btnlistar" type="button" (click)="listarCurriculoUnico(curriculo)">Listar</button>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+ </section>

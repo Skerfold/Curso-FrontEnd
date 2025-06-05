@@ -1,0 +1,39 @@
+<div class="cadastro-curriculo">
+  <h2>Cadastrar Novo Currículo</h2>
+  <form [formGroup]="curriculoForm" (ngSubmit)="cadastrar()">
+    <label>CPF</label>
+    <input type="text" formControlName="cpf" placeholder="Somente números" />
+    <div *ngIf="curriculoForm.get('cpf')?.invalid && curriculoForm.get('cpf')?.touched" class="erro">
+      CPF obrigatório (11 dígitos).
+    </div>
+
+    <label>Nome</label>
+    <input type="text" formControlName="nome" />
+    <div *ngIf="curriculoForm.get('nome')?.invalid && curriculoForm.get('nome')?.touched" class="erro">
+      Nome obrigatório.
+    </div>
+
+    <label>Foto (URL)</label>
+    <input type="text" formControlName="foto" />
+
+    <label>Descrição</label>
+    <input type="text" formControlName="descricao" />
+    <div *ngIf="curriculoForm.get('descricao')?.invalid && curriculoForm.get('descricao')?.touched" class="erro">
+      Descrição obrigatória.
+    </div>
+
+    <label>Experiência</label>
+    <input type="text" formControlName="experiencia" />
+    <div *ngIf="curriculoForm.get('experiencia')?.invalid && curriculoForm.get('experiencia')?.touched" class="erro">
+      Experiência obrigatória.
+    </div>
+
+    <label>Formação</label>
+    <input type="text" formControlName="formacao" />
+    <div *ngIf="curriculoForm.get('formacao')?.invalid && curriculoForm.get('formacao')?.touched" class="erro">
+      Formação obrigatória.
+    </div>
+
+    <button type="submit">Cadastrar Currículo</button>
+  </form>
+</div>

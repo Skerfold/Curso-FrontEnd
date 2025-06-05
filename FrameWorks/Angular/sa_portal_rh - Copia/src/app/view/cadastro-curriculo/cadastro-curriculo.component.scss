@@ -1,0 +1,56 @@
+.cadastro-curriculo {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #007bff;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    label {
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    input {
+      padding: 0.7rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .erro {
+      color: #dc3545;
+      font-size: 0.95rem;
+      margin-top: -0.7rem;
+      margin-bottom: 0.5rem;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.8rem;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+
+      &:hover {
+        background: #0056b3;
+      }
+    }
+  }
+}
