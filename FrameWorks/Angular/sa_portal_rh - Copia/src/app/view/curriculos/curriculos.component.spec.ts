@@ -35,7 +35,7 @@ describe('CurriculosComponent', () => {
   templateUrl: './curriculos.component.html',
   styleUrls: ['./curriculos.component.scss']
 })
-export class CurriculosComponent implements OnInit {
+export class CurriculoComponent implements OnInit {
   curriculos: Curriculo[] = [];
 
   constructor(private curriculosService: CurriculosService) {}
@@ -51,7 +51,7 @@ export class CurriculosComponent implements OnInit {
     );
   }
 
-  deletarCurriculo(cpf: string): void {
+  removerCurriculo(cpf: any): void {
     if (confirm('Tem certeza que deseja deletar este currículo?')) {
       this.curriculosService.removerCurriculos(cpf).subscribe(
         () => this.listarCurriculos(),

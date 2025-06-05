@@ -1,4 +1,10 @@
 export class Curriculo {
+  public get id(): string {
+    return this._id
+  }
+  public set id(value: string) {
+    this._id = value
+  }
   public get formacao(): string {
     return this._formacao
   }
@@ -29,10 +35,10 @@ export class Curriculo {
   public set nome(value: string) {
     this._nome = value
   }
-  public get cpf(): number {
+  public get cpf(): string {
     return this._cpf
   }
-  public set cpf(value: number) {
+  public set cpf(value: string) {
     this._cpf = value
   }
   //atributos
@@ -53,7 +59,8 @@ export class Curriculo {
   // ^ forma classica de criação de classe
 
   constructor(
-    private _cpf: number,
+    private _id: string,
+    private _cpf: string,
     private _nome: string,
     private _foto: string,
     private _descricao: string,
@@ -87,12 +94,12 @@ export class Curriculo {
  fromMap(map:any):Curriculo{
     return new Curriculo(
       map.id,
+      map.cpf,
       map.nome,
       map.foto,
       map.descricao,
       map.experiencia,
-      map.formacao,
-
+      map.formacao
     )
   }
 

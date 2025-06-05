@@ -1,55 +1,74 @@
 {
   "vagas": [
     {
-      "cpf": "1",
+      "cpf": "246810121314",
       "nome": "Desenvolver FrontEnd Jr",
       "foto": "foto1.jpg",
       "descricao": "Trabalhar com HTML, CSS e JS",
-      "salario": 4000
+      "salario": "4000",
+      "id": "v1"
     },
     {
-      "cpf": "2",
+      "cpf": "246810121315",
       "nome": "Desenvolver BackEnd Pleno",
       "foto": "foto2.jpg",
       "descricao": "Trabalhar com Desenvolvimento Web",
-      "salario": 7000
+      "salario": "7000",
+      "id": "v2"
     },
     {
-      "cpf": "3",
+      "cpf": "246810121311",
       "nome": "Desenvolver Fullstack Senior",
       "foto": "foto3.jpg",
       "descricao": "Trabalhar com Desenvolvimento Web",
-      "salario": 10000
+      "salario": "10000",
+      "id": "v3"
     },
     {
-      "cpf": 4,
+      "cpf": "246810121319",
       "nome": "Engenheiro de Nuvem",
       "foto": "foto4.jpg",
       "descricao": "Trabalhar com Nuvem AWS",
-      "salario": 8000
+      "salario": "8000",
+      "id": "v4"
     }
   ],
   "curriculos": [
     {
-      "id": "1",
+      "id": "c1",
+      "cpf": "12345678900",
       "nome": "João Silva",
       "foto": "curriculo1.jpg",
       "descricao": "Desenvolvedor FrontEnd com 2 anos de experiência",
-      "experiencia": "HTML, CSS, JavaScript"
+      "experiencia": "HTML, CSS, JavaScript",
+      "formacao": "Graduação em Ciência da Computação"
     },
     {
-      "cpf": "2",
+      "id": "c2",
+      "cpf": "246810121329",
       "nome": "Maria Oliveira",
       "foto": "curriculo2.jpg",
       "descricao": "Desenvolvedora BackEnd com 3 anos de experiência",
-      "experiencia": "Node.js, Express, MongoDB"
+      "experiencia": "Node.js, Express, MongoDB",
+      "formacao": "Graduação em Engenharia de Software"
     },
     {
-      "cpf": 3,
+      "id": "c3",
+      "cpf": "246810121354",
       "nome": "Carlos Pereira",
       "foto": "curriculo3.jpg",
       "descricao": "Desenvolvedor Fullstack com 5 anos de experiência",
-      "experiencia": "React, Node.js, PostgreSQL"
+      "experiencia": "React, Node.js, PostgreSQL",
+      "formacao": "Pós-graduação em Desenvolvimento Web"
+    },
+    {
+      "id": "c4",
+      "cpf": "47825313895",
+      "nome": "Bababoi XD Ez da Silva",
+      "foto": "dadaaaddada",
+      "descricao": "Eu Sou Steve",
+      "experiencia": "CHICKEN JOCKEY",
+      "formacao": "FLINT AND STEEL !!!!!!"
     }
   ]
 }

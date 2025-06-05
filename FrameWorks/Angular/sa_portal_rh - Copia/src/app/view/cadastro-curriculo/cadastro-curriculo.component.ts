@@ -31,7 +31,12 @@ export class CadastroCurriculoComponent {
       alert('Preencha todos os campos obrigatórios corretamente.');
       return;
     }
-    this.curriculosService.cadastrarCurriculos(this.curriculoForm.value).subscribe(
+    // Cria o objeto com id igual ao cpf
+    const curriculo = {
+      ...this.curriculoForm.value,
+      id: this.curriculoForm.value.cpf
+    };
+    this.curriculosService.cadastrarCurriculos(curriculo).subscribe(
       () => {
         this.curriculoForm.reset();
         alert('Currículo cadastrado com sucesso!');

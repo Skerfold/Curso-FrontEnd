@@ -35,6 +35,7 @@ export class PainelCurriculosComponent implements OnInit {
     this._curriculosService.getCurriculos().subscribe((retornaCurriculo) => {
       this.curriculos = retornaCurriculo.map((item: any) => {
         return new Curriculo(
+          item.id,
           item.cpf,
           item.nome,
           item.foto,
@@ -64,13 +65,13 @@ export class PainelCurriculosComponent implements OnInit {
     );
   }
 
-  atualizar(cpf: any) {
+  atualizar(id: any) {
     if (this.curriculoForm.invalid) {
       alert('Por favor, preencha todos os campos obrigatórios corretamente.');
       return;
     }
     const curriculo = this.curriculoForm.value;
-    this._curriculosService.atualizarCurriculos(cpf, curriculo).subscribe(
+    this._curriculosService.atualizarCurriculos(id, curriculo).subscribe(
       () => {
         this.curriculoForm.reset();
         this.listarCurriculos();
@@ -86,15 +87,16 @@ export class PainelCurriculosComponent implements OnInit {
     this.curriculoForm.patchValue(curriculo);
   }
 
-  excluir(cpf: any) {
-    this._curriculosService.removerCurriculos(cpf).subscribe(
-      () => {
-        this.listarCurriculos();
-        alert('Currículo deletado com sucesso!');
-      },
-      (err) => {
-        console.error('Exception: ', err);
-      }
-    );
-  }
+  remover(curriculo: Curriculo) {
+  const id = curriculo.cpf; // agora o id será igual ao cpf
+  this._curriculosService.removerCurriculos(id).subscribe(
+    () => {
+      this.listarCurriculos();
+      alert('Currículo deletado com sucesso!');
+    },
+    (err) => {
+      console.error('Exception: ', err);
+    }
+  );
+}
 }

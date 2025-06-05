@@ -22,6 +22,7 @@ export class CurriculosComponent implements OnInit{
         this.curriculos = retornaCurriculo.map(
           (item) => {
             return new Curriculo(
+              item.id,
               item.cpf,
               item.nome,
               item.foto,
@@ -35,4 +36,17 @@ export class CurriculosComponent implements OnInit{
     )
   }
 
+
+removerCurriculo(id: any): void {
+  if (confirm('Tem certeza que deseja deletar este currículo?')) {
+    this._curriculoService.removerCurriculos(id).subscribe(
+      () => {
+        this.listarCurriculos();
+      },
+      (err) => {
+        console.error('Erro ao remover currículo:', err);
+      }
+    );
+  }
+}
 }

@@ -7,7 +7,7 @@ import { Curriculo } from '../models/curriculo.model';
   providedIn: 'root'
 })
 export class CurriculosService {
-  private apiUrl = 'http://localhost:3013/curriculos'; // Use your real backend port
+  private apiUrl = 'http://localhost:3013/curriculos'; 
 
   constructor(private http: HttpClient) {}
 
@@ -19,11 +19,11 @@ export class CurriculosService {
     return this.http.post<Curriculo>(this.apiUrl, curriculo);
   }
 
-  atualizarCurriculos(cpf: string, curriculo: Curriculo): Observable<Curriculo> {
-    return this.http.put<Curriculo>(`${this.apiUrl}/${cpf}`, curriculo);
+  atualizarCurriculos(id: string, curriculo: Curriculo): Observable<Curriculo> {
+    return this.http.put<Curriculo>(`${this.apiUrl}/${id}`, curriculo);
   }
 
-  removerCurriculos(cpf: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${cpf}`);
+  removerCurriculos(id: any): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
