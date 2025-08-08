@@ -4,6 +4,10 @@ import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
+
+// Midleware
+// Implemest ( faz um contrato com a interface )
+
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -14,5 +18,6 @@ export class AuthGuard implements CanActivate {
       this.router.navigate(['/login']);
       return false;
     }
+
   }
 }

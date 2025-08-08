@@ -8,60 +8,77 @@ import { catchError, map, Observable, switchMap, tap } from 'rxjs';
 })
 export class AuthService {
   //atributos
-  private apiUrl = "http://localhost:3012'/usuarios";
+  private apiUrl = 'http://localhost:3000/usuarios';
   private readonly CHAVE_AUTH = 'usuarioLogado';
 
   constructor(private router: Router, private http: HttpClient) {}
 
-  //métodos
-
+  // métodos
+  //cadastrar o uruário no sistema
   registrar(usuario: any): Observable<any> {
+    //verificar se usuario já existe (get -> email)
     return this.http.get<any[]>(`${this.apiUrl}?email=${usuario.email}`).pipe(
       map((usuarios) => {
+        //se usuário já existe
         if (usuarios.length > 0) {
-          throw new Error('Usuário já cadastrado');
+          //lanço um erro para o sistema.
+          throw new Error('Usuário ja cadastrado');
         }
         return usuario;
       }),
+      // caso o usuário não exista
       switchMap((novoUsuario) =>
         this.http
           .post(this.apiUrl, novoUsuario)
-          .pipe(tap(() => alert('Registro realizado com sucesso!')))
+          .pipe(tap(() => alert('Registro realizado com sucesso')))
       ),
+      // pegar erros de conexão
       catchError((err) => {
         alert(`Erro: ${err.message}`);
         throw err;
       })
     );
   }
-
+  //método para logar usuário já registrados
   login(credenciais: any): Observable<boolean> {
+    // passar para o banco uma busca com email e senha
     return this.http
       .get<any[]>(
         `${this.apiUrl}?email=${credenciais.email}&senha=${credenciais.senha}`
       )
-      .pipe(map((usuarios) => {
-        if( usuarios.length === 0) return false;
-        const usuario = usuarios[0];
-        localStorage.setItem(this.CHAVE_AUTH, JSON.stringify(usuario))
-        return true; 
-      }));
+      .pipe(
+        map((usuarios) => {
+          //não encontrado
+          if (usuarios.length === 0) {
+            return false;
+          } else {
+            // o usuário e sua chave de autenticação => localStorage
+            const usuario = usuarios[0];
+            localStorage.setItem(this.CHAVE_AUTH, JSON.stringify(usuario));
+            return true; // Deu certo -> pode avançar
+          }
+        })
+      );
   }
-
+  // Método para deslogar o usuário 
   logout() {
+    // Limpo o localStorage
     localStorage.removeItem(this.CHAVE_AUTH);
-    this.router.navigate(["/home"]);
+    // Redireciona para outra página
+    this.router.navigate(['/home']);
   }
 
-// Método de verificação de autenticação 
-estaAutenticado(): boolean {
-  return !! localStorage.getItem(this.CHAVE_AUTH);
-}
+  // verificar se usuario já fez autenticação
+  // (autorização do acesso)
+  estaAutenticado(): boolean {
+    // transformando a verificação da string em booleana
+    return !!localStorage.getItem(this.CHAVE_AUTH);
+  }
 
-// Método para pegar os dados do usuário 
-
-getUsuarioAtual():any {
-  return JSON.parse(localStorage.getItem(this.CHAVE_AUTH) || '{}');
-}
-
+  // pegar os dados do usuário
+  getUsuarioAtual(): any {
+    // quando eu armazeno no localStorage -> Texto 
+    // quando for pegar do localStorage eu converto para JSON
+    return JSON.parse(localStorage.getItem(this.CHAVE_AUTH) || '{}');
+  }
 }
