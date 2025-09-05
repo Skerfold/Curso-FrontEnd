@@ -1,0 +1,24 @@
+.container { 
+  min-height: 100vh;
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, darkorange  0%, brown 100%);
+  color: white;
+  font-family: "Comic Sans MS";
+}
+
+.title { 
+  font-size: 4rem; 
+  font-weight: bold; 
+  margin: 0 auto;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.8)
+}
+
+.subtitle { 
+  font-size: 1.5rem;
+  margin-top: 1rem; 
+  color: #ddd;
+}
