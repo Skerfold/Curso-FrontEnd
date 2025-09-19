@@ -1,7 +1,7 @@
 //índica que é a tela usada pelo cliente-side
 "use client";
 
-import { Itarefa } from "@/models/Tarefa";
+import { Itarefa } from "@/models/tarefa";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 
 export default function Home() {

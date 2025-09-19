@@ -2,7 +2,7 @@
 
 // Funções do Controller
 
-import Tarefa, { Itarefa } from "@/models/Tarefa";
+import Tarefa, { Itarefa } from "@/models/tarefa";
 import connectMongo from "@/services/mongodb";
 
 // Get
