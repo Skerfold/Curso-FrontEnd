@@ -9,8 +9,7 @@ export interface IUsuario extends Document {
     email: string;
     senha: string;
     funcao: string;
-    login(): Promise<void>;
-    logout(): Promise<void>;
+    comparePassword(userPassword: string): Promise<boolean>;
 }
 
 // Vamos criar a Regra do Schema
@@ -39,16 +38,15 @@ const UsuarioSchema: Schema<IUsuario> = new mongoose.Schema({
     },
     funcao: {
         type: String,
+        enum: ['tecnico', 'gestor', 'admin'],
         required: [true, "A função é obrigatória"],
         trim: true,
         maxlength: [50, "Máximo de 50 caracteres"]
     }
-});
+}, { timestamps: true });
 
-// Middleware para hashear a senha 
-// Serve para criptografar a senha quando for armazenar o usuario no BD
 UsuarioSchema.pre<IUsuario>('save', async function (next){
-    if(!this.isModified('password') || !this.senha) return next();
+    if(!this.isModified('senha') || !this.senha) return next();
     try {
         const salt = await bcrypt.genSalt(10);
         this.senha = await bcrypt.hash(this.senha, salt);
@@ -58,22 +56,11 @@ UsuarioSchema.pre<IUsuario>('save', async function (next){
     }
 })
 
-// Método para comparar a senha 
-// Quando o usuário for fazer o login ( compara a senha digitada e criptografada com a senha criptografada )
 UsuarioSchema.methods.comparePassword = function (userPassword:string): Promise<boolean>{
-    return  bcrypt.compare(userPassword, this.password);
+    return  bcrypt.compare(userPassword, this.senha);
 }
 
 
-UsuarioSchema.methods.login = async function() {
-    // Lógica de login
-    console.log(`${this.nome} fez login`);
-};
-
-UsuarioSchema.methods.logout = async function() {
-    // Lógica de logout
-    console.log(`${this.nome} fez logout`);
-};
 
 const Usuario: Model<IUsuario> = mongoose.models.Usuario || mongoose.model<IUsuario>("Usuario", UsuarioSchema);
 

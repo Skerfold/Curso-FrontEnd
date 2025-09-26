@@ -1,25 +1,18 @@
 // Definir primeiro a infraestrutura do OBJ
 
-import mongoose, { Document, Model, Schema } from "mongoose";
+import mongoose, { Document, Model, Schema, Types } from "mongoose";
 
-export interface OrdemServico extends Document {
-    id: number;
+export interface IOrdemServico extends Document {
     titulo: string;
     descricao: string;
     tipoManutencao: string;
     status: string;
-    create(): Promise<OrdemServico>;
-    read(): Promise<OrdemServico | null>;
-    update(data: Partial<OrdemServico>): Promise<OrdemServico | null>;
-    delete(): Promise<void>;
+    equipId: Types.ObjectId;
+    tecnicoId: Types.ObjectId;
+    dataConclusao?: Date;
 }
 
-const OrdemServicoSchema: Schema<OrdemServico> = new mongoose.Schema({
-    id: {
-        type: Number,
-        required: true,
-        unique: true
-    },
+const OrdemServicoSchema: Schema<IOrdemServico> = new mongoose.Schema({
     titulo: {
         type: String,
         required: [true, "O título é obrigatório"],
@@ -34,34 +27,35 @@ const OrdemServicoSchema: Schema<OrdemServico> = new mongoose.Schema({
     },
     tipoManutencao: {
         type: String,
+        enum: ['preventiva', 'correiva'],
         required: [true, "O tipo de manutenção é obrigatório"],
         trim: true,
         maxlength: [50, "Máximo de 50 caracteres"]
     },
     status: {
         type: String,
+        enum: ['aberta', 'atribuida', 'em_andamento', 'concluida'],
         required: [true, "O status é obrigatório"],
         trim: true,
-        maxlength: [20, "Máximo de 20 caracteres"]
+        maxlength: [20, "Máximo de 20 caracteres"],
+        default: 'aberta'
+    },
+    equipId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Equipamento',
+        required: true
+    },
+    tecnicoId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Usuario',
+        required: false
+    },
+    dataConclusao: {
+        type: Date,
+        default: null
     }
 }, { timestamps: true });
 
-OrdemServicoSchema.methods.create = async function() {
-    return this.save();
-};
-
-OrdemServicoSchema.methods.read = async function() {
-    return await OrdemServico.findById(this._id);
-};
-
-OrdemServicoSchema.methods.update = async function(data: Partial<OrdemServico>) {
-    return await OrdemServico.findByIdAndUpdate(this._id, data, { new: true });
-};
-
-OrdemServicoSchema.methods.delete = async function() {
-    await OrdemServico.findByIdAndDelete(this._id);
-};
-
-const OrdemServico: Model<OrdemServico> = mongoose.models.OrdemServico || mongoose.model<OrdemServico>("OrdemServico", OrdemServicoSchema);
+const OrdemServico: Model<IOrdemServico> = mongoose.models.OrdemServico || mongoose.model<IOrdemServico>("OrdemServico", OrdemServicoSchema);
 
 export default OrdemServico;

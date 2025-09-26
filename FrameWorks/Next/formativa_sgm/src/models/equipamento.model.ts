@@ -2,25 +2,15 @@
 
 import mongoose, { Document, Model, Schema } from "mongoose";
 
-export interface Equipamento extends Document {
-    id: number;
+export interface IEquipamento extends Document {
     nome: string;
     modelo: string;
     numeroSerie: string;
     localizacao: string;
     status: string;
-    create(): Promise<Equipamento>;
-    read(): Promise<Equipamento | null>;
-    update(data: Partial<Equipamento>): Promise<Equipamento | null>;
-    delete(): Promise<void>;
 }
 
-const EquipamentoSchema: Schema<Equipamento> = new mongoose.Schema({
-    id: {
-        type: Number,
-        required: true,
-        unique: true
-    },
+const EquipamentoSchema: Schema<IEquipamento> = new mongoose.Schema({
     nome: {
         type: String,
         required: [true, "O nome é obrigatório"],
@@ -53,22 +43,6 @@ const EquipamentoSchema: Schema<Equipamento> = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-EquipamentoSchema.methods.create = async function() {
-    return this.save();
-};
-
-EquipamentoSchema.methods.read = async function() {
-    return await Equipamento.findById(this._id);
-};
-
-EquipamentoSchema.methods.update = async function(data: Partial<Equipamento>) {
-    return await Equipamento.findByIdAndUpdate(this._id, data, { new: true });
-};
-
-EquipamentoSchema.methods.delete = async function() {
-    await Equipamento.findByIdAndDelete(this._id);
-};
-
-const Equipamento: Model<Equipamento> = mongoose.models.Equipamento || mongoose.model<Equipamento>("Equipamento", EquipamentoSchema);
+const Equipamento: Model<IEquipamento> = mongoose.models.Equipamento || mongoose.model<IEquipamento>("Equipamento", EquipamentoSchema);
 
 export default Equipamento;
