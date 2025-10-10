@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
-
 //componentes responsavel por estabelece a conexão com o mongoDB
-//converte uma string em URL => 
+//converte uma string em URL =>
 const MONGO_URI = process.env.DATABASE_URL;
 
 //verificar se o arquivo enviroment(.env) foi definido
 
 //1º Passo Criar e Verificar o Endereço de Conexão
 if(!MONGO_URI){
-    throw new Error("Crie o .env.local com a Variável DATABASE_URL");
+    console.error("Crie o .env.local com a Variável DATABASE_URL");
+    process.env.DATABASE_URL = 'mongodb://localhost:27017/default';
 }
 
 

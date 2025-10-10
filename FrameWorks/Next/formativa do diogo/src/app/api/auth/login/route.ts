@@ -4,7 +4,7 @@ import { autenticaUsuario } from "@/controllers/UsuarioController";
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 
-const JWT_SECRET = process.env.JWT_SECRET as string;
+const JWT_SECRET = process.env.JWT_SECRET;
 
 if (!JWT_SECRET) {
   throw new Error("JWT_SECRETE não está definida nas variáveis locais");
@@ -34,13 +34,17 @@ export async function POST(req: Request) {
       JWT_SECRET as string,
       { expiresIn: "1h" }
     );
-
-    // Retornar a resposta com o token
-    return NextResponse.json({ success: true, token });
-  } catch (error) {
+    // Retorna o token
     return NextResponse.json({
-      success: false,
-      error: "Erro interno do servidor",
+      success: true,
+      token,
+      usuario: {
+        id: usuario.id,
+        username: usuario.username,
+        tipo: usuario.tipo,
+      },
     });
+  } catch (error) {
+    return NextResponse.json({ success: false, error: error });
   }
 }

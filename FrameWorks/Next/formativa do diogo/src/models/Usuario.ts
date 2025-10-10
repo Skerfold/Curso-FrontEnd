@@ -11,7 +11,7 @@ export interface IUsuario extends Document{
     comparePassword(userPassword:string): Promise<boolean>;
 }
 
-//criaração do SCHEMa do MongoDB (construtor)
+// Criação do SCHEMA do MongoDB (construtor)
 
 const UsuarioSchema: Schema<IUsuario> = new Schema({
     username:{type:String, required:true, unique:true},
@@ -24,13 +24,9 @@ const UsuarioSchema: Schema<IUsuario> = new Schema({
 //serve para criptografar a senha quando for armazenar u usuário no BD
 UsuarioSchema.pre<IUsuario>('save', async function (next){
     if(!this.isModified('password') || !this.password) return next();
-    try {
-        const salt = await bcrypt.genSalt(10);
-        this.password = await bcrypt.hash(this.password, salt);
-        next();
-    } catch (error:any) {
-        next(error);
-    }
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
 })
 
 //método para comparar senha
