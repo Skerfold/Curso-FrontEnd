@@ -1,0 +1,137 @@
+// src/app/Dashboard.module.scss
+
+.container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+
+  h1 {
+    color: #333;
+  }
+
+  span {
+    margin-right: 1rem;
+    color: #555;
+  }
+}
+
+.logoutButton {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+
+  &:hover {
+    background-color: #e2e6ea;
+    border-color: #bbb;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  thead {
+    background-color: #f2f2f2;
+  }
+
+  tbody tr:hover {
+    background-color: #f5f5f5;
+  }
+}
+
+.lowStock {
+  background-color: #fff3cd !important; // Cor de alerta amarela
+  font-weight: bold;
+}
+
+.error {
+  color: #d32f2f;
+  background-color: #ffcdd2;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 1.5rem;
+}
+
+// Adicione estas classes no final do arquivo: src/app/Dashboard.module.scss
+
+.mainHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.addButton {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #28a745; // Cor Verde para Adicionar
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #218838;
+  }
+}
+
+// Adicione estas classes no final do arquivo: src/app/Dashboard.module.scss
+
+.actionsCell {
+  display: flex;
+  gap: 0.5rem;
+  white-space: nowrap; // Impede que os botões quebrem a linha
+}
+
+.actionButton {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.entradaButton {
+  background-color: #007bff; // Azul
+}
+
+.saidaButton {
+  background-color: #ffc107; // Laranja/Amarelo
+  color: #212529; // Texto escuro para melhor contraste
+}
